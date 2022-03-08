@@ -1,4 +1,4 @@
-import { extendTheme, theme as DEFAULT_THEME } from '@chakra-ui/react';
+import { extendTheme } from '@chakra-ui/react'
 
 const theme = extendTheme({
   config: {
@@ -53,6 +53,6 @@ const theme = extendTheme({
   shadows: {
     outline: '0 0 0 3px var(--chakra-colors-pink-200) !important',
   },
-});
+})
 
-export default theme;
+export default theme
