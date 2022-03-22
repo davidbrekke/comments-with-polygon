@@ -5,7 +5,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "hh-node": "npx hardhat node",
+    "hh-deploy-local": "npx hardhat run --network localhost scripts/deploy-and-seed.js"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.1.5",
