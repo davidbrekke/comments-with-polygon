@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { Button, HStack, Stack, Textarea } from '@chakra-ui/react'
+import { HStack, Stack, Textarea } from '@chakra-ui/react'
 import { constants } from 'ethers'
 import Avatar from '@davatar/react'
+import AuthButton from './AuthButton'
 import { useAccount } from 'wagmi'
 import useAddComment from '../hooks/useAddComment'
-import AuthButton from './AuthButton'
 
 interface CommentEditorProps {
   topic: string
@@ -14,7 +14,7 @@ const CommentEditor: React.FunctionComponent<CommentEditorProps> = ({
   topic,
 }) => {
   const [message, setMessage] = React.useState('')
-  const { mutateAsync, isLoading } = useAddComment()
+  const mutation = useAddComment()
   const [accountQuery] = useAccount()
 
   return (
@@ -40,12 +40,14 @@ const CommentEditor: React.FunctionComponent<CommentEditorProps> = ({
         colorScheme="pink"
         alignSelf="flex-end"
         onClick={() => {
-          mutateAsync({
-            message,
-            topic,
-          }).then(() => setMessage(''))
+          mutation
+            .mutateAsync({
+              message,
+              topic,
+            })
+            .then(() => setMessage(''))
         }}
-        isLoading={isLoading}
+        isLoading={mutation.isLoading}
       >
         Submit
       </AuthButton>
